@@ -20,7 +20,7 @@ export const LoginUser = async (req: Request, res: Response, next: NextFunction)
             id:user._id
         }
 
-        console.log(newUser)
+   
         return res.status(200).send({ message: "Login Successfully!", newUser })
     } catch (error) {
         next(error)
