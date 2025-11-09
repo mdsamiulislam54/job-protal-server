@@ -24,7 +24,6 @@ const LoginUser = async (req, res, next) => {
             email: user.email,
             id: user._id
         };
-        console.log(newUser);
         return res.status(200).send({ message: "Login Successfully!", newUser });
     }
     catch (error) {
