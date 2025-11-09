@@ -3,6 +3,7 @@ import { CreateUser } from "../controllers/Authentication/createUser";
 import { LoginUser } from "../controllers/Authentication/loginUser";
 import { PostJobs } from "../controllers/Post-Jobs/post-Jobs";
 import { GetLatestJobs } from "../controllers/Job-Controllers/latest-jobs";
+import { AllJobs } from "../controllers/Job-Controllers/all-jobs";
 const router = express.Router();
 
 router.get("/", (req,res)=>{
@@ -17,7 +18,7 @@ router.post('/login', LoginUser)
 router.post('/job', PostJobs)
 
 router.get('/job', GetLatestJobs)
-
+router.get('/all-jobs', AllJobs)
 
 
 
