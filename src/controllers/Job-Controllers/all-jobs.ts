@@ -5,14 +5,14 @@ export const AllJobs = async (req: Request, res: Response, next: NextFunction) =
     try {
         const page = parseInt(req.query.page as string) || 1
         const limit = parseInt(req.query.limit as string) || 10
-        const category = (req.query.category as string) || "All"
+     
         const filterData = JSON.parse(req.query.filter as string) || {}
-        const { search, location, min, max } = filterData
+        const { search, location, min, max,category } = filterData
 
 
         const query: any = {}
         if (category !== "All") {
-            query.category = category
+            query.category = { $regex: category, $options: "i" };
         }
 
         if (search) {
@@ -37,23 +37,17 @@ export const AllJobs = async (req: Request, res: Response, next: NextFunction) =
 
         }
 
-        // const aggregationPipeline = [
-        //     { $query: query },
-        //     { $sort: { createdAt: -1 as -1 } },
-        //     { $skip: (page - 1) * limit },
-        //     { $limit: limit }
-        // ]
 
 
 
         const [jobs, total, uniqueCategory, uniqueLocation] = await Promise.all([
-            JobsModel.find(query).sort({createdAt: -1 }).limit((page -1)* limit).limit(limit),
+            JobsModel.find(query).sort({ createdAt: -1 }).limit((page - 1) * limit).limit(limit),
             JobsModel.countDocuments(query),
-        
+
             JobsModel.distinct("category"),
             JobsModel.distinct("location"),
         ])
-     
+
         const jobsData = jobs.map((item) => ({
             _id: item._id,
             salaryRange: `৳ ${item.salaryRange.min} — ${item.salaryRange.max}`,
