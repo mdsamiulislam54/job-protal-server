@@ -7,6 +7,7 @@ import { AllJobs } from "../controllers/Job-Controllers/all-jobs";
 import { JobDetailsById } from "../controllers/Job-Controllers/jobsById";
 import { PostApplication } from "../controllers/Application/postApplication";
 import { UserApplicationByEmail } from "../models/ApplicationModel/userApplication";
+import { UserApplicationDeleteById } from "../controllers/Application/userApplicationDeleteById";
 const router = express.Router();
 
 router.get("/", (req,res)=>{
@@ -32,7 +33,9 @@ router.get('/application/:email', UserApplicationByEmail)
 router.get('/job/:id', JobDetailsById)
 
 
+// *delete by user
 
+router.delete('/application/:id', UserApplicationDeleteById)
 
 
 

@@ -41,7 +41,7 @@ export const AllJobs = async (req: Request, res: Response, next: NextFunction) =
 
 
         const [jobs, total, uniqueCategory, uniqueLocation] = await Promise.all([
-            JobsModel.find(query).sort({ createdAt: -1 }).limit((page - 1) * limit).limit(limit),
+            JobsModel.find(query).skip((page - 1) * limit).limit(limit),
             JobsModel.countDocuments(query),
 
             JobsModel.distinct("category"),
