@@ -7,7 +7,7 @@ exports.GetLatestJobs = void 0;
 const jobModel_1 = __importDefault(require("../../models/JobModel/jobModel"));
 const GetLatestJobs = async (req, res, next) => {
     try {
-        const jobs = await jobModel_1.default.find().sort({ postedDate: -1 }).limit(10).lean();
+        const jobs = await jobModel_1.default.find().sort({ createdAt: -1 }).limit(10).lean();
         const jobsData = jobs.map((item) => ({
             _id: item._id,
             salaryRange: `৳ ${item.salaryRange.min} — ${item.salaryRange.max}`,
