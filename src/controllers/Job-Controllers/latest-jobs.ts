@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express"
 import JobsModel from "../../models/JobModel/jobModel"
 export const GetLatestJobs = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const jobs = await JobsModel.find().sort({ postedDate: -1 }).limit(10).lean()
+        const jobs = await JobsModel.find().sort({ createdAt: -1 }).limit(10).lean()
         const jobsData = jobs.map((item) => ({
             _id: item._id,
             salaryRange:`৳ ${item.salaryRange.min} — ${item.salaryRange.max}`,

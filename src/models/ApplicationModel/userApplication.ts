@@ -3,7 +3,7 @@ import ApplicationModel from "./applicationModel";
 export const UserApplicationByEmail = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { email } = req.params;
-        const application = await ApplicationModel.find({ email: email }).lean();
+        const application = await ApplicationModel.find({ email: email }).lean().sort({createdAt: -1})
         res.status(200).send({ message: "User Application Find Successfully!", application })
     } catch (error) {
         next(error)

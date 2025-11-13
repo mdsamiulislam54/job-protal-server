@@ -7,12 +7,15 @@ export const AllJobs = async (req: Request, res: Response, next: NextFunction) =
         const limit = parseInt(req.query.limit as string) || 10
      
         const filterData = JSON.parse(req.query.filter as string) || {}
-        const { search, location, min, max,category } = filterData
+        const { search, location, min, max,category ,job_type} = filterData
 
-
+        console.log(job_type)
         const query: any = {}
         if (category !== "All") {
             query.category = { $regex: category, $options: "i" };
+        }
+        if ( job_type!== "all") {
+            query.jobType = { $regex: job_type, $options: "i" };
         }
 
         if (search) {
