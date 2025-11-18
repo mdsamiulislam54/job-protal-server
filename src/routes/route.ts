@@ -17,6 +17,8 @@ import { JobChart } from "../controllers/Dashboard-Controller/job_Chart";
 import { JobTypeAndExperience } from "../controllers/Dashboard-Controller/job_type_job_expriance_chart";
 import { JobsPerMonth } from "../controllers/Dashboard-Controller/job_per_month";
 import { LatestApplication } from "../controllers/Dashboard-Controller/Latest_application_table";
+import { GetAllUser } from "../controllers/Dashboard-Controller/Manage_User/all_user";
+import { AdminUserDelete } from "../controllers/Dashboard-Controller/Manage_User/delete-user";
 const router = express.Router();
 
 router.get("/", (req,res)=>{
@@ -50,13 +52,15 @@ router.get('/dashboard/card', DashboardCardData)
 router.get('/dashboard/job/chart', JobChart);
 router.get('/dashboard/job/type/experience', JobTypeAndExperience)
 router.get('/dashboard/job/per/month', JobsPerMonth);
-router.get('/dashboard/latest/application', LatestApplication)
+router.get('/dashboard/latest/application', LatestApplication);
+router.get('/dashboard/get-user', GetAllUser)
 
 
-// *delete by user
+// *delete 
 
 router.delete('/application/:id', UserApplicationDeleteById);
 router.delete('/employee/job/:id', EmployeeJobsListDeleteById)
+router.delete('/dashboard/delete-user/:id', AdminUserDelete)
 
 //* Employee 
 router.patch('/application/:id',Employee_Application_Status_Update_ById)
