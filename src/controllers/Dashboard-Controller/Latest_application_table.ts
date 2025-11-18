@@ -42,8 +42,7 @@ export const LatestApplication = async (req: Request, res: Response, next: NextF
         res.setHeader("Cache-Control", "no-store")
         res.status(200).send({
             message: "All Application Find Successfully!",
-            total: Math.ceil(total / limit),
-
+            totalPage: Math.ceil(total / limit),
             application: application,
         })
     } catch (error) {
