@@ -11,6 +11,12 @@ import { UserApplicationDeleteById } from "../controllers/Application/userApplic
 import { Employee_jobs_List } from "../controllers/EmployeeApplication/Application_list";
 import { Employee_Application_Status_Update_ById } from "../controllers/EmployeeApplication/rejectApplicationById";
 import { Posted_All_Jobs } from "../controllers/EmployeeApplication/all_posted_jobs";
+import { EmployeeJobsListDeleteById } from "../controllers/EmployeeApplication/employee_job_list_delete_By_Id";
+import { DashboardCardData } from "../controllers/Dashboard-Controller/Dashboard_Card";
+import { JobChart } from "../controllers/Dashboard-Controller/job_Chart";
+import { JobTypeAndExperience } from "../controllers/Dashboard-Controller/job_type_job_expriance_chart";
+import { JobsPerMonth } from "../controllers/Dashboard-Controller/job_per_month";
+import { LatestApplication } from "../controllers/Dashboard-Controller/Latest_application_table";
 const router = express.Router();
 
 router.get("/", (req,res)=>{
@@ -37,9 +43,20 @@ router.get('/job/:id', JobDetailsById)
 router.get('/employee/jobs/list/:email', Employee_jobs_List);
 router.get('/employee/posted/job/:email', Posted_All_Jobs)
 
+
+//* admin
+
+router.get('/dashboard/card', DashboardCardData)
+router.get('/dashboard/job/chart', JobChart);
+router.get('/dashboard/job/type/experience', JobTypeAndExperience)
+router.get('/dashboard/job/per/month', JobsPerMonth);
+router.get('/dashboard/latest/application', LatestApplication)
+
+
 // *delete by user
 
-router.delete('/application/:id', UserApplicationDeleteById)
+router.delete('/application/:id', UserApplicationDeleteById);
+router.delete('/employee/job/:id', EmployeeJobsListDeleteById)
 
 //* Employee 
 router.patch('/application/:id',Employee_Application_Status_Update_ById)

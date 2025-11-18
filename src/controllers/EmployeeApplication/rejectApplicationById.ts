@@ -4,8 +4,10 @@ import ApplicationModel from "../../models/ApplicationModel/applicationModel";
 export const Employee_Application_Status_Update_ById = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
-    const { accept, reject } = req.query;
+    const { accept, reject,delete:deleteQuery } = req.query;
 
+
+   
     const updateData: any = {};
 
     if (accept === "true") {
