@@ -19,6 +19,7 @@ import { JobsPerMonth } from "../controllers/Dashboard-Controller/job_per_month"
 import { LatestApplication } from "../controllers/Dashboard-Controller/Latest_application_table";
 import { GetAllUser } from "../controllers/Dashboard-Controller/Manage_User/all_user";
 import { AdminUserDelete } from "../controllers/Dashboard-Controller/Manage_User/delete-user";
+import { PendingApplicationList } from "../controllers/Dashboard-Controller/pending_application_list";
 const router = express.Router();
 
 router.get("/", (req,res)=>{
@@ -53,7 +54,8 @@ router.get('/dashboard/job/chart', JobChart);
 router.get('/dashboard/job/type/experience', JobTypeAndExperience)
 router.get('/dashboard/job/per/month', JobsPerMonth);
 router.get('/dashboard/latest/application', LatestApplication);
-router.get('/dashboard/get-user', GetAllUser)
+router.get('/dashboard/get-user', GetAllUser);
+router.get('/dashboard/pending/application', PendingApplicationList)
 
 
 // *delete 
