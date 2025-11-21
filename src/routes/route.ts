@@ -23,6 +23,7 @@ import { PendingApplicationList } from "../controllers/Dashboard-Controller/pend
 import { RoleChange } from "../controllers/Dashboard-Controller/Manage_User/change_role";
 import { ManageAllJobs } from "../controllers/Dashboard-Controller/manage_all_job";
 import { AdminAcceptsJobs } from "../controllers/Dashboard-Controller/accepts_job";
+import { CompanyList } from "../controllers/CompanyList/company_list";
 const router = express.Router();
 
 router.get("/", (req,res)=>{
@@ -40,7 +41,8 @@ router.post('/job', PostJobs)
 // * User
 router.get('/job', GetLatestJobs)
 router.get('/all-jobs', AllJobs)
-router.get('/application/:email', UserApplicationByEmail)
+router.get('/application/:email', UserApplicationByEmail);
+router.get('/company/list', CompanyList)
 
 
 //* employee

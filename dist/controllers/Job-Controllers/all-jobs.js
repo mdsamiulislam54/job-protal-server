@@ -11,8 +11,7 @@ const AllJobs = async (req, res, next) => {
         const limit = parseInt(req.query.limit) || 10;
         const filterData = JSON.parse(req.query.filter) || {};
         const { search, location, min, max, category, job_type } = filterData;
-        console.log(job_type);
-        const query = {};
+        const query = { status: "accepted" };
         if (category !== "All") {
             query.category = { $regex: category, $options: "i" };
         }
