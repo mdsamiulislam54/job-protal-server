@@ -21,6 +21,8 @@ import { GetAllUser } from "../controllers/Dashboard-Controller/Manage_User/all_
 import { AdminUserDelete } from "../controllers/Dashboard-Controller/Manage_User/delete-user";
 import { PendingApplicationList } from "../controllers/Dashboard-Controller/pending_application_list";
 import { RoleChange } from "../controllers/Dashboard-Controller/Manage_User/change_role";
+import { ManageAllJobs } from "../controllers/Dashboard-Controller/manage_all_job";
+import { AdminAcceptsJobs } from "../controllers/Dashboard-Controller/accepts_job";
 const router = express.Router();
 
 router.get("/", (req,res)=>{
@@ -56,7 +58,8 @@ router.get('/dashboard/job/type/experience', JobTypeAndExperience)
 router.get('/dashboard/job/per/month', JobsPerMonth);
 router.get('/dashboard/latest/application', LatestApplication);
 router.get('/dashboard/get-user', GetAllUser);
-router.get('/dashboard/pending/application', PendingApplicationList)
+router.get('/dashboard/pending/application', PendingApplicationList);
+router.get('/dashboard/manage/jobs', ManageAllJobs);
 
 
 // *delete 
@@ -69,6 +72,7 @@ router.delete('/dashboard/delete-user/:id', AdminUserDelete);
 router.patch('/application/:id',Employee_Application_Status_Update_ById)
 
 //* Admin
-router.patch('/dashboard/change/role/:id', RoleChange)
+router.patch('/dashboard/change/role/:id', RoleChange);
+router.patch('/dashboard/application/status/:id', AdminAcceptsJobs);
 
 export default router;

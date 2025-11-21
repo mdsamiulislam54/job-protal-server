@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express"
 import JobsModel from "../../models/JobModel/jobModel"
+import { stat } from "fs"
 
 export const AllJobs = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -9,8 +10,8 @@ export const AllJobs = async (req: Request, res: Response, next: NextFunction) =
         const filterData = JSON.parse(req.query.filter as string) || {}
         const { search, location, min, max,category ,job_type} = filterData
 
-        console.log(job_type)
-        const query: any = {}
+       
+        const query: any = {status: "accepted"}
         if (category !== "All") {
             query.category = { $regex: category, $options: "i" };
         }

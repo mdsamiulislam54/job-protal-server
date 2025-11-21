@@ -25,6 +25,7 @@ const jobsSchema = new Schema({
   companyLogo: { type: String, default: "" },
   contactEmail: { type: String, required: true },
   contactMessage: { type: String, default: "" },
+  status: { type: String, enum: ["pending", "accept", "reject"], default: "pending" },
 }, {
   timestamps: true
 });

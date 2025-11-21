@@ -25,6 +25,7 @@ const Latest_application_table_1 = require("../controllers/Dashboard-Controller/
 const all_user_1 = require("../controllers/Dashboard-Controller/Manage_User/all_user");
 const delete_user_1 = require("../controllers/Dashboard-Controller/Manage_User/delete-user");
 const pending_application_list_1 = require("../controllers/Dashboard-Controller/pending_application_list");
+const change_role_1 = require("../controllers/Dashboard-Controller/Manage_User/change_role");
 const router = express_1.default.Router();
 router.get("/", (req, res) => {
     res.send("Hello route");
@@ -56,4 +57,6 @@ router.delete('/employee/job/:id', employee_job_list_delete_By_Id_1.EmployeeJobs
 router.delete('/dashboard/delete-user/:id', delete_user_1.AdminUserDelete);
 //* Employee 
 router.patch('/application/:id', rejectApplicationById_1.Employee_Application_Status_Update_ById);
+//* Admin
+router.patch('/dashboard/change/role/:id', change_role_1.RoleChange);
 exports.default = router;
