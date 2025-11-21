@@ -4,11 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Employee_Application_Status_Update_ById = void 0;
-const applicationModel_1 = __importDefault(require("../../models/ApplicationModel/applicationModel"));
+const applicationModel_1 = __importDefault(require("../../../models/ApplicationModel/applicationModel"));
 const Employee_Application_Status_Update_ById = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const { accept, reject, delete: deleteQuery } = req.query;
+        const { accept, reject } = req.query;
         const updateData = {};
         if (accept === "true") {
             updateData.status = "accepted";

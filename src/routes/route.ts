@@ -20,6 +20,7 @@ import { LatestApplication } from "../controllers/Dashboard-Controller/Latest_ap
 import { GetAllUser } from "../controllers/Dashboard-Controller/Manage_User/all_user";
 import { AdminUserDelete } from "../controllers/Dashboard-Controller/Manage_User/delete-user";
 import { PendingApplicationList } from "../controllers/Dashboard-Controller/pending_application_list";
+import { RoleChange } from "../controllers/Dashboard-Controller/Manage_User/change_role";
 const router = express.Router();
 
 router.get("/", (req,res)=>{
@@ -61,10 +62,13 @@ router.get('/dashboard/pending/application', PendingApplicationList)
 // *delete 
 
 router.delete('/application/:id', UserApplicationDeleteById);
-router.delete('/employee/job/:id', EmployeeJobsListDeleteById)
-router.delete('/dashboard/delete-user/:id', AdminUserDelete)
+router.delete('/employee/job/:id', EmployeeJobsListDeleteById);
+router.delete('/dashboard/delete-user/:id', AdminUserDelete);
 
 //* Employee 
 router.patch('/application/:id',Employee_Application_Status_Update_ById)
+
+//* Admin
+router.patch('/dashboard/change/role/:id', RoleChange)
 
 export default router;

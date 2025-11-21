@@ -7,7 +7,6 @@ import router from './routes/route';
 import { errorHandler } from './middlewares/ErrorHandling/errorHandling';
 
 const app = express();
-
 const port = process.env.PORT || 5000
 app.use(express.json())
 app.use(cors())
@@ -17,6 +16,10 @@ connectDB().then(()=>{
   console.error("Database connection failed:", err);
 });
 
+app.listen(port, ()=>{
+    console.log(`Server running on port ${port}`)
+})
+
 
 
 app.use('/api', router)
@@ -24,7 +27,4 @@ app.use(errorHandler)
 
 app.use((req,res)=>{
     res.status(404).json({success:false, message:"Route Not Found"})
-})
-app.listen(port, ()=>{
-    console.log(`Server running on port ${port}`)
 })

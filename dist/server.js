@@ -19,11 +19,11 @@ app.use((0, cors_1.default)());
 }).catch((err) => {
     console.error("Database connection failed:", err);
 });
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+});
 app.use('/api', route_1.default);
 app.use(errorHandling_1.errorHandler);
 app.use((req, res) => {
     res.status(404).json({ success: false, message: "Route Not Found" });
-});
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
 });
