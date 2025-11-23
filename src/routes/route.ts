@@ -24,11 +24,12 @@ import { RoleChange } from "../controllers/Dashboard-Controller/Manage_User/chan
 import { ManageAllJobs } from "../controllers/Dashboard-Controller/manage_all_job";
 import { AdminAcceptsJobs } from "../controllers/Dashboard-Controller/accepts_job";
 import { CompanyList } from "../controllers/CompanyList/company_list";
+import { VerifyToken } from "../middlewares/verifyToken/verifyToken";
 const router = express.Router();
 
-router.get("/", (req,res)=>{
+router.get("/", (req, res) => {
     res.send("Hello route")
-} );
+});
 
 
 router.post('/create-user', CreateUser);
@@ -41,40 +42,40 @@ router.post('/job', PostJobs)
 // * User
 router.get('/job', GetLatestJobs)
 router.get('/all-jobs', AllJobs)
-router.get('/application/:email', UserApplicationByEmail);
+router.get('/application/:email', VerifyToken, UserApplicationByEmail);
 router.get('/company/list', CompanyList)
 
 
 //* employee
 
 router.get('/job/:id', JobDetailsById)
-router.get('/employee/jobs/list/:email', Employee_jobs_List);
-router.get('/employee/posted/job/:email', Posted_All_Jobs)
+router.get('/employee/jobs/list/:email', VerifyToken, Employee_jobs_List);
+router.get('/employee/posted/job/:email', VerifyToken, Posted_All_Jobs)
 
 
 //* admin
 
-router.get('/dashboard/card', DashboardCardData)
-router.get('/dashboard/job/chart', JobChart);
-router.get('/dashboard/job/type/experience', JobTypeAndExperience)
-router.get('/dashboard/job/per/month', JobsPerMonth);
-router.get('/dashboard/latest/application', LatestApplication);
-router.get('/dashboard/get-user', GetAllUser);
-router.get('/dashboard/pending/application', PendingApplicationList);
-router.get('/dashboard/manage/jobs', ManageAllJobs);
+router.get('/dashboard/card', VerifyToken, DashboardCardData)
+router.get('/dashboard/job/chart', VerifyToken, JobChart);
+router.get('/dashboard/job/type/experience', VerifyToken, JobTypeAndExperience)
+router.get('/dashboard/job/per/month', VerifyToken, JobsPerMonth);
+router.get('/dashboard/latest/application', VerifyToken, LatestApplication);
+router.get('/dashboard/get-user', VerifyToken, GetAllUser);
+router.get('/dashboard/pending/application', VerifyToken, PendingApplicationList);
+router.get('/dashboard/manage/jobs', VerifyToken, ManageAllJobs);
 
 
 // *delete 
 
-router.delete('/application/:id', UserApplicationDeleteById);
-router.delete('/employee/job/:id', EmployeeJobsListDeleteById);
-router.delete('/dashboard/delete-user/:id', AdminUserDelete);
+router.delete('/application/:id',VerifyToken,  UserApplicationDeleteById);
+router.delete('/employee/job/:id',VerifyToken,  EmployeeJobsListDeleteById);
+router.delete('/dashboard/delete-user/:id', VerifyToken, AdminUserDelete);
 
 //* Employee 
-router.patch('/application/:id',Employee_Application_Status_Update_ById)
+router.patch('/application/:id', VerifyToken, Employee_Application_Status_Update_ById)
 
 //* Admin
-router.patch('/dashboard/change/role/:id', RoleChange);
-router.patch('/dashboard/application/status/:id', AdminAcceptsJobs);
+router.patch('/dashboard/change/role/:id', VerifyToken, RoleChange);
+router.patch('/dashboard/application/status/:id', VerifyToken, AdminAcceptsJobs);
 
 export default router;

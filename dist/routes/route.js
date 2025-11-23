@@ -28,6 +28,7 @@ const pending_application_list_1 = require("../controllers/Dashboard-Controller/
 const change_role_1 = require("../controllers/Dashboard-Controller/Manage_User/change_role");
 const manage_all_job_1 = require("../controllers/Dashboard-Controller/manage_all_job");
 const accepts_job_1 = require("../controllers/Dashboard-Controller/accepts_job");
+const company_list_1 = require("../controllers/CompanyList/company_list");
 const router = express_1.default.Router();
 router.get("/", (req, res) => {
     res.send("Hello route");
@@ -41,6 +42,7 @@ router.post('/job', post_Jobs_1.PostJobs);
 router.get('/job', latest_jobs_1.GetLatestJobs);
 router.get('/all-jobs', all_jobs_1.AllJobs);
 router.get('/application/:email', userApplication_1.UserApplicationByEmail);
+router.get('/company/list', company_list_1.CompanyList);
 //* employee
 router.get('/job/:id', jobsById_1.JobDetailsById);
 router.get('/employee/jobs/list/:email', Application_list_1.Employee_jobs_List);
