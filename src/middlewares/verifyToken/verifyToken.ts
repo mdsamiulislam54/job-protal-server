@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from "express"
-import Jwt from "jsonwebtoken"
 export const VerifyToken = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const token = req.cookies['next-auth.session-token']

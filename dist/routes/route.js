@@ -29,6 +29,7 @@ const change_role_1 = require("../controllers/Dashboard-Controller/Manage_User/c
 const manage_all_job_1 = require("../controllers/Dashboard-Controller/manage_all_job");
 const accepts_job_1 = require("../controllers/Dashboard-Controller/accepts_job");
 const company_list_1 = require("../controllers/CompanyList/company_list");
+const verifyToken_1 = require("../middlewares/verifyToken/verifyToken");
 const router = express_1.default.Router();
 router.get("/", (req, res) => {
     res.send("Hello route");
@@ -41,28 +42,28 @@ router.post('/job', post_Jobs_1.PostJobs);
 // * User
 router.get('/job', latest_jobs_1.GetLatestJobs);
 router.get('/all-jobs', all_jobs_1.AllJobs);
-router.get('/application/:email', userApplication_1.UserApplicationByEmail);
+router.get('/application/:email', verifyToken_1.VerifyToken, userApplication_1.UserApplicationByEmail);
 router.get('/company/list', company_list_1.CompanyList);
 //* employee
 router.get('/job/:id', jobsById_1.JobDetailsById);
-router.get('/employee/jobs/list/:email', Application_list_1.Employee_jobs_List);
-router.get('/employee/posted/job/:email', all_posted_jobs_1.Posted_All_Jobs);
+router.get('/employee/jobs/list/:email', verifyToken_1.VerifyToken, Application_list_1.Employee_jobs_List);
+router.get('/employee/posted/job/:email', verifyToken_1.VerifyToken, all_posted_jobs_1.Posted_All_Jobs);
 //* admin
-router.get('/dashboard/card', Dashboard_Card_1.DashboardCardData);
-router.get('/dashboard/job/chart', job_Chart_1.JobChart);
-router.get('/dashboard/job/type/experience', job_type_job_expriance_chart_1.JobTypeAndExperience);
-router.get('/dashboard/job/per/month', job_per_month_1.JobsPerMonth);
-router.get('/dashboard/latest/application', Latest_application_table_1.LatestApplication);
-router.get('/dashboard/get-user', all_user_1.GetAllUser);
-router.get('/dashboard/pending/application', pending_application_list_1.PendingApplicationList);
-router.get('/dashboard/manage/jobs', manage_all_job_1.ManageAllJobs);
+router.get('/dashboard/card', verifyToken_1.VerifyToken, Dashboard_Card_1.DashboardCardData);
+router.get('/dashboard/job/chart', verifyToken_1.VerifyToken, job_Chart_1.JobChart);
+router.get('/dashboard/job/type/experience', verifyToken_1.VerifyToken, job_type_job_expriance_chart_1.JobTypeAndExperience);
+router.get('/dashboard/job/per/month', verifyToken_1.VerifyToken, job_per_month_1.JobsPerMonth);
+router.get('/dashboard/latest/application', verifyToken_1.VerifyToken, Latest_application_table_1.LatestApplication);
+router.get('/dashboard/get-user', verifyToken_1.VerifyToken, all_user_1.GetAllUser);
+router.get('/dashboard/pending/application', verifyToken_1.VerifyToken, pending_application_list_1.PendingApplicationList);
+router.get('/dashboard/manage/jobs', verifyToken_1.VerifyToken, manage_all_job_1.ManageAllJobs);
 // *delete 
-router.delete('/application/:id', userApplicationDeleteById_1.UserApplicationDeleteById);
-router.delete('/employee/job/:id', employee_job_list_delete_By_Id_1.EmployeeJobsListDeleteById);
-router.delete('/dashboard/delete-user/:id', delete_user_1.AdminUserDelete);
+router.delete('/application/:id', verifyToken_1.VerifyToken, userApplicationDeleteById_1.UserApplicationDeleteById);
+router.delete('/employee/job/:id', verifyToken_1.VerifyToken, employee_job_list_delete_By_Id_1.EmployeeJobsListDeleteById);
+router.delete('/dashboard/delete-user/:id', verifyToken_1.VerifyToken, delete_user_1.AdminUserDelete);
 //* Employee 
-router.patch('/application/:id', rejectApplicationById_1.Employee_Application_Status_Update_ById);
+router.patch('/application/:id', verifyToken_1.VerifyToken, rejectApplicationById_1.Employee_Application_Status_Update_ById);
 //* Admin
-router.patch('/dashboard/change/role/:id', change_role_1.RoleChange);
-router.patch('/dashboard/application/status/:id', accepts_job_1.AdminAcceptsJobs);
+router.patch('/dashboard/change/role/:id', verifyToken_1.VerifyToken, change_role_1.RoleChange);
+router.patch('/dashboard/application/status/:id', verifyToken_1.VerifyToken, accepts_job_1.AdminAcceptsJobs);
 exports.default = router;

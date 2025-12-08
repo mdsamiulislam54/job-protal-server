@@ -5,13 +5,16 @@ import express from 'express';
 import { connectDB } from './config/db';
 import router from './routes/route';
 import { errorHandler } from './middlewares/ErrorHandling/errorHandling';
-
-import cookieParser from 'cookie-parser';
+import cookieParser from 'cookie-parser'
 const app = express();
+
 const port = process.env.PORT || 5000
 app.use(express.json())
 app.use(cookieParser());
-app.use(cors({ origin: ["http://localhost:3000", "https://jobportal-phi.vercel.app"], credentials: true, methods: ["GET", "POST", "PUT", "DELETE", "PATCH"] }))
+app.use(cors({
+    origin: ["http://localhost:3000"],
+    credentials: true,
+}))
 connectDB().then(() => {
     console.log("Database connection established");
 }).catch((err) => {
@@ -24,7 +27,7 @@ app.listen(port, () => {
 
 
 
-app.use('/api',  router)
+app.use('/api', router)
 app.use(errorHandler)
 
 app.use((req, res) => {
